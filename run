@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+osascript -l JavaScript itunes-guess.scpt
