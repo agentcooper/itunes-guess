@@ -28,10 +28,12 @@ function textScore(count) {
 	return count.correct + ' out of ' + (count.correct + count.wrong + count.skipped);
 }
 
-iTunes = Application('iTunes');
+var iTunes = Application('iTunes');
 
-currentApp = Application.currentApplication();
+var currentApp = Application.currentApplication();
 currentApp.includeStandardAdditions = true;
+
+var appName = 'iTunes guess';
 
 var count = {
 	wrong: 0,
@@ -45,7 +47,7 @@ function next() {
 	iTunes.playerPosition = 30;
 
 	result = currentApp.displayDialog('Which artist is playing?', {
-		withTitle: 'Guess the artist',
+		withTitle: appName,
 		defaultAnswer: '',
 		buttons: ['Check', 'Don\'t know', 'Exit'],
 		defaultButton: 1
@@ -66,7 +68,8 @@ function next() {
 			'This is ' + prettyName + '\n\n',
 			{
 				buttons: 'Next',
-				defaultButton: 1
+				defaultButton: 1,
+        withTitle: appName
 			}
 		);
 	} else {
@@ -84,7 +87,8 @@ function next() {
 			output + ', this is ' + prettyName + '\n\n' + textScore(count),
 			{
 				buttons: 'Next',
-				defaultButton: 1
+				defaultButton: 1,
+        withTitle: appName
 			}
 		);
 	}
